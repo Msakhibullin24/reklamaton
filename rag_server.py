@@ -18,7 +18,7 @@ if API_KEY == "AIzaSyAy817y7DirgpWnMPS6t5ps-6Ui2pFAMys":
 
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
-embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=API_KEY)
 
 app = Flask(__name__)
 
