@@ -1,14 +1,13 @@
 import json
-from server import app  # Импортируем наше Flask-приложение
+from server import app
 
 def test_validation():
     """
     Тестирует эндпоинт /validate с помощью тестового клиента Flask.
     """
-    # Создаем тестовый клиент
     client = app.test_client()
 
-    # Загружаем НЕВАЛИДНЫЕ тестовые данные
+    # Загружаем невалидные тестовые данные
     try:
         with open("invalid_character_data.json", "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -20,12 +19,10 @@ def test_validation():
         return
 
     print("Запуск теста валидации через тестовый клиент...")
-    # Отправляем POST-запрос на /validate
-    response = client.post('/validate', 
-                           data=json.dumps(data), 
+    response = client.post('/validate',
+                           data=json.dumps(data),
                            content_type='application/json')
 
-    # Выводим результат
     print(f"Статус-код ответа: {response.status_code}")
     print("Тело ответа:")
     # response.data - это байтовая строка, декодируем ее в utf-8
